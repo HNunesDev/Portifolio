@@ -43,21 +43,19 @@ def plotar_precos(df):
 
 
 # ============== ETL ==============
+moedas = "bitcoin,ethereum,solana,ripple,0chain"
+arquivo = "Portifolio\ETL_cripto/precos_cripto.csv"
 
-if __name__ == "__main__":
-    moedas = "bitcoin,ethereum,solana,ripple,0chain"
-    arquivo = "Portifolio\ETL_cripto/precos_cripto.csv"
+# Extracao
+df = extrair_precos(moedas)
 
-    # Extracao
-    df = extrair_precos(moedas)
+# Transformacao
+df = transformar_dados(df)
 
-    # Transformacao
-    df = transformar_dados(df)
+# Salvando
+salvar_csv(df, arquivo)
 
-    # Salvando
-    salvar_csv(df, arquivo)
-
-    # Visualização basica
-    print("Criptos e preços extraídos:")
-    print(df)
-    plotar_precos(df)
+# Visualização basica
+print("Criptos e preços extraídos:")
+print(df)
+plotar_precos(df)
